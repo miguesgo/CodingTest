@@ -10,6 +10,7 @@ For more stories they've been ordering because of the score value
 ![image](https://github.com/user-attachments/assets/5700d5d6-dcc8-47fa-a505-46eee6319c78)
 
 ## Documentation
+You'll need Visual Studio (in my case I used the 2022 version), .NET 8.0 installed and clone the repo.
 To run and test the application, I configured it to use HTTP (to avoid issues with invalid or self-signed certificates). For testing purposes, I relied on Swagger UI, which provides a user-friendly interface to explore and test the API endpoints.
 
 Running the app:
