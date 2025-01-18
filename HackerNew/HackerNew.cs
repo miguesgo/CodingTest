@@ -2,7 +2,7 @@
 {
     public class HackerNew
     {
-        public int Id { get; set; }
+        private long _time;
 
         public string? Title { get; set; }
 
@@ -10,8 +10,27 @@
 
         public string? By { get; set; }
 
-        public int Time { get; set; }
-
         public int? Score { get; set; }
+
+        public long Time
+        {
+            get
+            {
+                return _time;
+            }
+            set
+            {
+                _time = value;
+            }
+        }
+
+        public string UnixTimeToDateTime
+        {
+            get
+            {
+                var offset = DateTimeOffset.FromUnixTimeSeconds(Time);
+                return offset.DateTime.ToString("yyyy-MM-ddTHH:mm:ss.ffffK");
+            }
+        }
     }
 }

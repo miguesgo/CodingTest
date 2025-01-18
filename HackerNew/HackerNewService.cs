@@ -11,11 +11,10 @@ namespace CodingTest.HackerNew
             _httpClient = httpClient;
         }
 
-        public async Task<List<int>> GetBestStoriesIdsAsync()
+        public async Task<List<int>> GetStories()
         {
             var response = await _httpClient.GetAsync("beststories.json");
             response.EnsureSuccessStatusCode();
-
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<List<int>>(json)!;
         }
@@ -24,27 +23,19 @@ namespace CodingTest.HackerNew
         {
             var response = await _httpClient.GetAsync($"item/{id}.json");
             response.EnsureSuccessStatusCode();
-
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<HackerNew>(json, new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true // Ignora las diferencias entre mayúsculas y minúsculas
+                PropertyNameCaseInsensitive = true
             })!;
         }
 
-        public async Task<List<HackerNew>> GetStoryDetail(int count)
+        public async Task<List<HackerNew>> GetStoriesDetail(int count)
         {
-            // Obtener los IDs de las historias
-            var storyIds = await GetBestStoriesIdsAsync();
-
-            // Limitar la cantidad a procesar según `count`
-            var topStoryIds = storyIds.Take(count);
-
-            // Obtener los detalles de las historias en paralelo
-            var stories = await Task.WhenAll(topStoryIds.Select(id => GetStoryById(id)));
-
-            // Retornar como lista
-            return stories.ToList();
+            var storyIds = await GetStories();
+            var selectedStories = storyIds.Take(count);
+            var details = await Task.WhenAll(selectedStories.Select(id => GetStoryById(id)));
+            return details.ToList();
         }
     }
 }

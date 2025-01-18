@@ -2,10 +2,10 @@
 {
     public interface HackerNewInterface
     {
-        Task<List<int>> GetBestStoriesIdsAsync();
+        Task<List<int>> GetStories();
 
         Task<HackerNew> GetStoryById(int id);
 
-        Task<List<HackerNew>> GetStoryDetail(int count);
+        Task<List<HackerNew>> GetStoriesDetail(int count);
     }
 }
