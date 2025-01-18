@@ -2,16 +2,16 @@
 {
     public class HackerNew
     {
+        public int Id { get; set; }
+
         public string? Title { get; set; }
 
-        public string? Uri { get; set; }
+        public string? Url { get; set; }
 
-        public string? PostedBy { get; set; }
+        public string? By { get; set; }
 
-        public string? Time { get; set; }
+        public int Time { get; set; }
 
         public int? Score { get; set; }
-
-        public string? CommentCount { get; set; }
     }
 }

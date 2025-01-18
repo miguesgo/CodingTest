@@ -17,8 +17,18 @@ namespace CodingTest.HackerNew
         public async Task<IActionResult> GetBestStories()
         {
             var storyIds = await _hackerNewInterface!.GetBestStoriesIdsAsync();
-            var stories = await Task.WhenAll(storyIds.Take(1).Select(id => _hackerNewInterface.GetBestStoriesIdsAsync()));
+            var stories = await Task.WhenAll(storyIds.Take(1).Select(id => _hackerNewInterface.GetStoryById(id)));
             return Ok(stories);
+        }
+
+        [HttpGet("beststories/detail")]
+        public async Task<IActionResult> GetStoryDetail([FromQuery] int count = 5)
+        {
+            var stories = await _hackerNewInterface!.GetStoryDetail(count);
+
+            IEnumerable<HackerNew> query = stories.OrderByDescending(story => story.Score);
+
+            return Ok(query);
         }
     }
 }
