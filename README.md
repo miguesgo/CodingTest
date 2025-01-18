@@ -1,4 +1,4 @@
-# Project Title
+# DeveloperCodingTest
 Hi! this is my solution for the coding test. In this project, I used the ASP.NET Core Web API template to fetch and retrieve data (best n stories) from the Hacker News API.
 
 Expected response
